@@ -1,0 +1,12 @@
+2024-07-22T18:51:48.225Z [right meow!] error: Password must be at least 8 characters long
+2024-07-22T18:52:13.036Z [right meow!] error: OTP must be exactly 4 digits
+2024-07-22T18:53:12.089Z [right meow!] error: OTP must be exactly 4 digits
+2024-07-22T18:53:37.957Z [right meow!] error: OTP must be numeric
+2024-07-22T19:13:14.360Z [right meow!] error: Cannot set headers after they are sent to the client
+2024-07-22T19:13:17.857Z [right meow!] error: Cannot set headers after they are sent to the client
+2024-07-22T19:13:20.413Z [right meow!] error: Cannot set headers after they are sent to the client
+2024-07-22T19:17:20.294Z [right meow!] error: Cannot set headers after they are sent to the client
+2024-07-22T19:17:22.546Z [right meow!] error: user with an email : jiwane@gmail.com already present in the db
+2024-07-22T19:17:25.000Z [right meow!] error: user with an email : jiwane@gmail.com already present in the db
+2024-07-22T19:17:27.329Z [right meow!] error: user with an email : jiwane@gmail.com already present in the db
+2024-07-22T19:17:29.247Z [right meow!] error: user with an email : jiwane@gmail.com already present in the db

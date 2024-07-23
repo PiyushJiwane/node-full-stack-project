@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: Todo List Backend API
+  description: This is the backend api for my first todo list project including frontend.
+  version: 1.0.0
+  contact:
+    name: Piyush Jiwane
+    email: jiwane@gmail.com
+servers:
+  - url: 'http://localhost:5000'
+    description: This is the local server
+paths:
+  /signup:
+    post:
+      description: signup api
+      summary: signup api
+      tags:
+        - User controller
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: piyush jiwane
+                email:
+                  type: string
+                  example: jiwane@gmail.com
+                password:
+                  type: string
+                  example: Piyush@123
+                otp:
+                  type: number
+                  example: 5895
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: string
+    get:
+      description: get the username
+      summary: get the username
+      tags:
+        - User controller
+      parameters:
+        - in: query
+          name: username
+          required: true
+          description: description
+          schema:
+            type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: string
+  /signup/otpValidation:
+    post:
+      description: otp validation api
+      summary: otp validation api
+      tags:
+        - User controller
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: jiwane@gmail.com
+  /signup/checkUser:
+    post:
+      description: check user with same email id alredy exist or not
+      summary: check user with same email id alredy exist or not
+      tags:
+        - User controller
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: jiwane@gmail.com
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: string
+  '/signup/{userId}':
+    delete:
+      security:
+        - bearerAuth: []
+      description: Describe this route
+      summary: Describe this route
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: description
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Description
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

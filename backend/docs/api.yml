@@ -1,0 +1,23 @@
+openapi: 3.0.0
+
+info:
+  title: Todo List Backend API
+  description: This is the backend api for my first todo list project including frontend.
+  version: 1.0.0
+  contact:
+    name: Piyush Jiwane
+    email: jiwane@gmail.com
+
+servers:
+  - url: http://localhost:5000
+    description: This is the local server
+
+paths:
+  $ref: './paths.yml'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
