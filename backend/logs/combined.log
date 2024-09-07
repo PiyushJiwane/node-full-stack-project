@@ -12,3 +12,12 @@
 2024-09-06T15:05:23.083Z [ToDo Project] error: customJWTToken is not a function
 2024-09-07T03:21:49.335Z [ToDo Project] error: customJWTToken is not a function
 2024-09-07T03:23:21.398Z [ToDo Project] error: customJWTToken is not a function
+2024-09-07T09:00:17.452Z [ToDo Project] error: Password must be at least 8 characters long
+2024-09-07T09:03:34.736Z [ToDo Project] error: Password must be at least 8 characters long
+2024-09-07T09:04:13.162Z [ToDo Project] error: Password must be at least 8 characters long
+2024-09-07T09:04:28.305Z [ToDo Project] error: Password must be at least 8 characters long
+2024-09-07T09:05:10.703Z [ToDo Project] error: OtpModel is not defined
+2024-09-07T09:06:01.807Z [ToDo Project] error: OtpModel is not defined
+2024-09-07T09:07:22.091Z [ToDo Project] error: Cast to ObjectId failed for value "{ email: 'jiwane@gmail.com' }" (type Object) at path "_id" for model "user"
+2024-09-07T09:09:54.455Z [ToDo Project] error: Cast to ObjectId failed for value "{ email: 'jiwane@gmail.com' }" (type Object) at path "_id" for model "user"
+2024-09-07T09:13:39.666Z [ToDo Project] error: facing issue while logging with email :jiwane@gmail.com
