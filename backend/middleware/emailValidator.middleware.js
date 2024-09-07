@@ -1,9 +1,11 @@
 const { body, validationResult } = require('express-validator');
 const logger = require('../logging/logger');
+const { email_validQuery } = require('./commonValidator');
+
 
 const emailValidator=[
-    body('email').isEmail().normalizeEmail().withMessage('Invalid email'),
-
+    email_validQuery,
+    
     // After validation, check for errors
     (req, res, next) => {
         const errors = validationResult(req);
