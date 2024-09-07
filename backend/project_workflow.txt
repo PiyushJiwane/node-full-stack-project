@@ -1,0 +1,9 @@
+1. signup_route.post("/checkUser",emailValidator,checkUser)
+    - This route is resposible to check user with a same email id is already exist or not
+    - if not then only we can send the OTP
+
+2. signup_route.post("/otpValidation",emailValidator, sendOtp)
+    - once we got the output of Route1 i.e. email id is not exits in the db then we can send the OTP to the user
+
+3. signup_route.post("/",userValidator, signup)
+    - after generating an otp we can ask user to signup
