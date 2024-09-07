@@ -13,8 +13,19 @@ servers:
     description: This is the local server
 
 paths:
-  $ref: './paths.yml'
-
+  /todo/api/v1/login:
+    $ref: './login.yml#/paths/~1todo~1api~1v1~1login'
+  /todo/api/v1/updateUser/{userId}:
+    $ref: './login.yml#/paths/~1todo~1api~1v1~1updateUser~1{userId}'
+  /todo/api/v1/deleteUser/{userId}:
+    $ref: './login.yml#/paths/~1todo~1api~1v1~1deleteUser~1{userId}'
+  /todo/api/v1/signup:
+    $ref: './signup.yml#/paths/~1todo~1api~1v1~1signup'
+  /todo/api/v1/checkUser:
+    $ref: './signup.yml#/paths/~1todo~1api~1v1~1checkUser'
+  /todo/api/v1/otpValidation:
+    $ref: './signup.yml#/paths/~1todo~1api~1v1~1otpValidation'
+    
 components:
   securitySchemes:
     bearerAuth:
