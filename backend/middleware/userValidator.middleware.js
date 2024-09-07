@@ -1,20 +1,12 @@
 const { check, body, validationResult } = require('express-validator');
 const logger = require('../logging/logger');
+const { username_validBody, password_validBody, email_validBody, otp_validBody } = require('./commonValidator');
 
 const userValidator = [
-    // Validate and sanitize fields using express-validator
-    body('username').trim().isLength({ min: 1 }).withMessage('Name must be specified'),
-    body('email').isEmail().normalizeEmail().withMessage('Invalid email'),
-    body('password')
-        .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
-        .matches(/[a-z]/).withMessage('Password must contain at least one lowercase letter')
-        .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
-        .matches(/\d/).withMessage('Password must contain at least one number')
-        .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('Password must contain at least one special character'),
-    body('otp').isLength({ min: 4, max: 4 })
-        .withMessage('OTP must be exactly 4 digits')
-        .isNumeric()
-        .withMessage('OTP must be numeric'),
+    username_validBody,
+    email_validBody,
+    password_validBody,
+    otp_validBody,
 
     // After validation, check for errors
     (req, res, next) => {
