@@ -1,5 +1,6 @@
 const express = require("express");
-const signup_route = require("./routes/signup_route");
+const signup_route = require("./routes/signup.route");
+const login_route = require("./routes/login.route");
 const morgan = require("morgan");
 const connectDB = require("./config/dbConnection")
 const swaggerUi=require("swagger-ui-express")
@@ -18,7 +19,8 @@ app.use(morgan('tiny'))
 app.use(express.json())
 app.use(cors());
 
-app.use("/signup",signup_route)
+app.use("/",signup_route)
+app.use("/",login_route)
 app.use('/docs', cors(),swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 const startServer = async () => {
