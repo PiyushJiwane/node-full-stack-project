@@ -27,6 +27,36 @@ paths:
               schema:
                 type: string
 
+  /todo/api/v1/forgetPassword:
+    post:
+      description: forgot password
+      summary: forgot password
+      tags:
+        - Login Controller
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: jiwane@gmail.com
+                password:
+                  type: string
+                  example: Piyush@123
+                otp:
+                  type: number
+                  example: 1234
+      responses:
+        200:
+          description: Description
+          content: 
+            application/json:
+              schema:
+                type: string
+
   /todo/api/v1/updateUser/{userId}:
     put:
       description: update user data based on Id
