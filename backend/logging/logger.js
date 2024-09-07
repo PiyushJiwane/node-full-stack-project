@@ -18,7 +18,7 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 
 const logger = createLogger({
     format: combine(
-      label({ label: 'right meow!' }),
+      label({ label: 'ToDo Project' }),
       timestamp(),
       myFormat
     ),
