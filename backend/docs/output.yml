@@ -10,12 +10,90 @@ servers:
   - url: 'http://localhost:5000'
     description: This is the local server
 paths:
-  /signup:
+  /todo/api/v1/login:
+    post:
+      description: login api
+      summary: login api
+      tags:
+        - Login Controller
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: jiwane@gmail.com
+                password:
+                  type: string
+                  example: Piyush@123
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+  '/todo/api/v1/updateUser/{userId}':
+    put:
+      description: update user data based on Id
+      summary: update user data based on Id
+      tags:
+        - Login Controller
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: user id update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: jiwane1@gmail.com
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+  '/todo/api/v1/deleteUser/{userId}':
+    delete:
+      security:
+        - bearerAuth: []
+      description: Describe this route
+      summary: Describe this route
+      tags:
+        - Login Controller
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: user id delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+  /todo/api/v1/signup:
     post:
       description: signup api
       summary: signup api
       tags:
-        - User controller
+        - Signup Controller
       requestBody:
         required: true
         content:
@@ -34,7 +112,7 @@ paths:
                   example: Piyush@123
                 otp:
                   type: number
-                  example: 5895
+                  example: 1234
       responses:
         '200':
           description: success
@@ -42,14 +120,15 @@ paths:
             application/json:
               schema:
                 type: string
+  /todo/api/v1/checkUser:
     get:
       description: get the username
       summary: get the username
       tags:
-        - User controller
+        - Signup Controller
       parameters:
         - in: query
-          name: username
+          name: email
           required: true
           description: description
           schema:
@@ -61,61 +140,22 @@ paths:
             application/json:
               schema:
                 type: string
-  /signup/otpValidation:
-    post:
+  /todo/api/v1/otpValidation:
+    get:
       description: otp validation api
       summary: otp validation api
       tags:
-        - User controller
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: jiwane@gmail.com
-  /signup/checkUser:
-    post:
-      description: check user with same email id alredy exist or not
-      summary: check user with same email id alredy exist or not
-      tags:
-        - User controller
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  example: jiwane@gmail.com
-      responses:
-        '200':
-          description: success
-          content:
-            application/json:
-              schema:
-                type: string
-  '/signup/{userId}':
-    delete:
-      security:
-        - bearerAuth: []
-      description: Describe this route
-      summary: Describe this route
+        - Signup Controller
       parameters:
-        - in: path
-          name: userId
+        - in: query
+          name: email
           required: true
           description: description
           schema:
-            type: number
+            type: string
       responses:
         '200':
-          description: Description
+          description: success
           content:
             application/json:
               schema:
