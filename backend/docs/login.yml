@@ -1,0 +1,82 @@
+paths:
+  # test function
+  /todo/api/v1/login:
+    post:
+      description: login api
+      summary: login api
+      tags:
+        - Login Controller
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: jiwane@gmail.com
+                password:
+                  type: string
+                  example: Piyush@123
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /todo/api/v1/updateUser/{userId}:
+    put:
+      description: update user data based on Id
+      summary: update user data based on Id
+      tags:
+        - Login Controller
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: user id update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: jiwane1@gmail.com
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /todo/api/v1/deleteUser/{userId}:
+    delete:
+      security:
+        - bearerAuth: []
+      description: Describe this route
+      summary: Describe this route
+      tags:
+        - Login Controller
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: user id delete
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
