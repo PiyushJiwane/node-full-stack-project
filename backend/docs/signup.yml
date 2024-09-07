@@ -1,38 +1,4 @@
 paths:
-  /todo/api/v1/signup:
-    post:
-      description: signup api
-      summary: signup api
-      tags:
-        - Signup Controller
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                  example: piyush jiwane
-                email:
-                  type: string
-                  example: jiwane@gmail.com
-                password:
-                  type: string
-                  example: Piyush@123
-                otp:
-                  type: number
-                  example: 1234
-           
-      responses:
-        200:
-          description: success
-          content: 
-            application/json:
-              schema:
-                type: string
-
   /todo/api/v1/checkUser:
     get:
       description: get the username
@@ -67,6 +33,40 @@ paths:
           description:  description
           schema:
             type:  string  
+      responses:
+        200:
+          description: success
+          content: 
+            application/json:
+              schema:
+                type: string
+  
+  /todo/api/v1/signup:
+    post:
+      description: signup api
+      summary: signup api
+      tags:
+        - Signup Controller
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: piyush jiwane
+                email:
+                  type: string
+                  example: jiwane@gmail.com
+                password:
+                  type: string
+                  example: Piyush@123
+                otp:
+                  type: number
+                  example: 1234
+           
       responses:
         200:
           description: success
