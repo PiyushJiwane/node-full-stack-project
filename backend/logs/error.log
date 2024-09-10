@@ -21,3 +21,14 @@
 2024-09-07T09:07:22.091Z [ToDo Project] error: Cast to ObjectId failed for value "{ email: 'jiwane@gmail.com' }" (type Object) at path "_id" for model "user"
 2024-09-07T09:09:54.455Z [ToDo Project] error: Cast to ObjectId failed for value "{ email: 'jiwane@gmail.com' }" (type Object) at path "_id" for model "user"
 2024-09-07T09:13:39.666Z [ToDo Project] error: facing issue while logging with email :jiwane@gmail.com
+2024-09-09T13:46:45.024Z [ToDo Project] error: todo_list validation failed: todo.0._id: Cast to ObjectId failed for value "abc" (type string) at path "_id" because of "BSONError", todo.1._id: Cast to ObjectId failed for value "abc2" (type string) at path "_id" because of "BSONError", todo.0.desc: please provide the title, todo.0.title: please provide the title, todo.1.desc: please provide the title, todo.1.title: please provide the title
+2024-09-09T14:07:57.729Z [ToDo Project] error: _id is not defined
+2024-09-09T17:07:57.205Z [ToDo Project] error: Cannot read properties of undefined (reading 'title')
+2024-09-09T17:14:22.334Z [ToDo Project] error: Class constructor ObjectId cannot be invoked without 'new'
+2024-09-09T17:15:31.768Z [ToDo Project] error: Cannot populate path `user` because it is not in your schema. Set the `strictPopulate` option to false to override.
+2024-09-09T17:18:14.616Z [ToDo Project] error: Cannot populate path `user` because it is not in your schema. Set the `strictPopulate` option to false to override.
+2024-09-09T17:24:47.872Z [ToDo Project] error: Schema hasn't been registered for model "userModel".
+Use mongoose.model(name, schema)
+2024-09-10T06:47:07.780Z [ToDo Project] error: todo validation failed: userId: Cast to ObjectId failed for value "123asd456wqer" (type string) at path "userId" because of "BSONError"
+2024-09-10T06:54:21.152Z [ToDo Project] error: otp is not defined
+2024-09-10T07:30:18.179Z [ToDo Project] error: Invalid userId
