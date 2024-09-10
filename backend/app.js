@@ -7,6 +7,7 @@ const swaggerUi=require("swagger-ui-express")
 const YAML = require("yamljs");
 const path = require("path");
 const cors = require('cors');
+const todo_route = require("./routes/todo.route");
 
 const swaggerDocument = YAML.load(path.join(__dirname, "../backend/docs/output.yml"));
 
@@ -21,6 +22,7 @@ app.use(cors());
 
 app.use("/",signup_route)
 app.use("/",login_route)
+app.use("/",todo_route)
 app.use('/docs', cors(),swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 const startServer = async () => {
