@@ -29,7 +29,7 @@ paths:
     $ref: './signup.yml#/paths/~1todo~1api~1v1~1signup'
   /todo/api/v1/todo/{userId}:
     $ref: './todo.yml#/paths/~1todo~1api~1v1~1todo~1{userId}'
-    
+
 components:
   securitySchemes:
     bearerAuth:
