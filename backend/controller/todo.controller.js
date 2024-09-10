@@ -59,4 +59,20 @@ const saveTodo = async (req, res) => {
   }
 }
 
-module.exports = saveTodo
+const retriveTodo=async (req,res)=>{
+  const {userId}=req.params
+  try {
+    const todoList = await todoModel.find({ userId}).populate({
+      path:'todo'
+    })
+    const filteredTodoList = todoList.filter(item => item.todo.isCompleted === false);
+    res.send(filteredTodoList)
+  } catch (error) {
+    logger.error(error.message);
+  }
+}
+
+module.exports = {
+  saveTodo,
+  retriveTodo
+}
