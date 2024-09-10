@@ -1,10 +1,12 @@
-const { check, body, validationResult, query } = require('express-validator');
+const { check, body, validationResult, query, param } = require('express-validator');
 
 const username_validBody = body('username').trim().isLength({ min: 1 }).withMessage('Name must be specified')
 
 const email_validBody = body('email').isEmail().normalizeEmail().withMessage('Invalid email')
 
 const email_validQuery = query('email').isEmail().normalizeEmail().withMessage('Invalid email')
+
+const objectId_validParam=param("userId").isMongoId().withMessage("Invalid userId")
 
 const password_validBody = body('password')
     .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
@@ -23,5 +25,6 @@ module.exports={
     email_validBody,
     password_validBody,
     otp_validBody,
-    email_validQuery
+    email_validQuery,
+    objectId_validParam
 }
