@@ -190,6 +190,25 @@ paths:
               schema:
                 type: string
   '/todo/api/v1/todo/{userId}':
+    get:
+      description: get all the todo's created for a user
+      summary: get all the todo's created for a user
+      tags:
+        - Todo Controller
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: user id to find the todo's created for a user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Description
+          content:
+            application/json:
+              schema:
+                type: string
     post:
       description: save the todo data
       summary: save the todo data
