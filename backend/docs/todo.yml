@@ -53,3 +53,23 @@ paths:
               schema:
                 type: string
   
+  /todo/api/v1/inActive/todo/{userId}:
+    put:
+      description: delete todo
+      summary: delete todo
+      tags:
+        - Todo Controller
+      parameters:
+        - in: path
+          name: userId
+          required:  true
+          description: todo id which we want to delete
+          schema:
+            type:  string
+      responses:
+        200:
+          description: Description
+          content: 
+            application/json:
+              schema:
+                type: string
