@@ -9,24 +9,28 @@ const SALT_ROUND = Number(process.env.SALT_ROUND)
 
 const login = async (req, res) => {
     const { email, password } = req.body
+    console.log(email, password);
     try {
         const result = await userModel.findOne({ email })
         console.log(result);
 
-        const hashedPassword = await bcrypt.compare(password, result.password)
+        if (result !== null) {
+            const hashedPassword = await bcrypt.compare(password, result.password)
 
-        if (email && hashedPassword) {
-            console.log("true")
-            const jwt_token = await generateJWTToken(result)
-            console.log(jwt_token);
-            res.status(200).json({ jwt_token })
-            return
+            if (email && hashedPassword) {
+                console.log("true")
+                const jwt_token = await generateJWTToken(result)
+                console.log(jwt_token);
+                return res.status(200).json({ jwt_token })
+            }
+            throw new Error(JSON.stringify({"data":`incorrect password`}))
         }
         console.log("error");
-        res.status(400).json({ "data": `facing issue while logging with email :${email}` })
-        throw new Error(`facing issue while logging with email :${email}`)
+        throw new Error(JSON.stringify({"data":`email id :${email} does not exist in the db`}))
     } catch (error) {
-        logger.error(error.message);
+        const errorMsg=JSON.parse(error.message)
+        logger.error(errorMsg);
+        res.status(400).json({ "data": `${errorMsg.data}` })
     }
 }
 
@@ -87,8 +91,8 @@ const deleteUser = async (req, res) => {
 }
 
 const forgetPassword = async (req, res) => {
-    const { email, password:newPassword, otp } = req.body
-    console.log(email,newPassword,otp);
+    const { email, password: newPassword, otp } = req.body
+    console.log(email, newPassword, otp);
     try {
         const otpRecord = await OtpModel.findOne({ email, otp });
         if (!otpRecord || otpRecord.expiresAt < Date.now()) {
@@ -97,7 +101,7 @@ const forgetPassword = async (req, res) => {
 
         const bcrypt_password = await bcrypt.hash(newPassword, SALT_ROUND)
 
-        const userDoc = await userModel.updateOne({ email }, { password:bcrypt_password })
+        const userDoc = await userModel.updateOne({ email }, { password: bcrypt_password })
         console.log(userDoc);
 
         if (userDoc.acknowledged) {
