@@ -193,6 +193,8 @@ paths:
     get:
       description: get all the todo's created for a user
       summary: get all the todo's created for a user
+      security:
+        - bearerAuth: []
       tags:
         - Todo Controller
       parameters:
@@ -254,6 +256,29 @@ paths:
           description: todo id which we want to delete
           schema:
             type: string
+      responses:
+        '200':
+          description: Description
+          content:
+            application/json:
+              schema:
+                type: string
+  /todo/api/v1/refreshToken:
+    post:
+      description: Describe this route
+      summary: Describe this route
+      tags:
+        - JWT Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+                  example: weq441qw51eqwe12qw1e.....
       responses:
         '200':
           description: Description
