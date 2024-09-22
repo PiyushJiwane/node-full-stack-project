@@ -2,7 +2,8 @@ const logger = require("../logging/logger");
 const bcrypt = require("bcrypt");
 const userModel = require("../models/user_model");
 const OtpModel = require("../models/otp_model");
-const generateJWTToken = require("../middleware/jwtToken");
+const {generateJWTToken,generateJWTRefreshToken} = require("../middleware/jwtToken");
+const refreshTokenModel = require("../models/refreshToken_model");
 require('dotenv/config')
 
 const SALT_ROUND = Number(process.env.SALT_ROUND)
@@ -18,9 +19,23 @@ const login = async (req, res) => {
             const hashedPassword = await bcrypt.compare(password, result.password)
 
             if (email && hashedPassword) {
-                console.log("true")
+
                 const jwt_token = await generateJWTToken(result)
-                console.log(jwt_token);
+                const jwt_refresh_token = await generateJWTRefreshToken(result)
+                
+                const refreshTokenObject = new refreshTokenModel({
+                    _id:result._id,
+                    refreshToken:jwt_refresh_token
+                })
+
+                // const refreshTokenSave=await refreshTokenObject.save()
+                const refreshTokenSave = await refreshTokenModel.findByIdAndUpdate(
+                    result._id,           // Query by _id
+                    refreshTokenObject,    // Data to update
+                    { upsert: true, new: true } // Options: upsert to create if not found, new to return the updated document
+                  );
+
+                res.cookie("jwt_refresh_token",refreshTokenSave,{httpOnly:true,maxAge:7*24*60*60*1000})
                 return res.status(200).json({ jwt_token })
             }
             throw new Error(JSON.stringify({"data":`incorrect password`}))
