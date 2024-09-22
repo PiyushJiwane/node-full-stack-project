@@ -3,6 +3,8 @@ paths:
     get:
       description: get all the todo's created for a user
       summary: get all the todo's created for a user
+      security:
+        - bearerAuth: []  # Apply JWT security here
       tags:
         - Todo Controller
       parameters:
@@ -23,6 +25,8 @@ paths:
     post:
       description: save the todo data
       summary: save the todo data
+      security:
+        - bearerAuth: []  # Apply JWT security here
       tags:
         - Todo Controller
       parameters:
@@ -57,6 +61,8 @@ paths:
     put:
       description: delete todo
       summary: delete todo
+      security:
+        - bearerAuth: []  # Apply JWT security here
       tags:
         - Todo Controller
       parameters:
