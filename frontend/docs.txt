@@ -4,6 +4,7 @@ $ npm create vite@latest <project_name> -- --template react
 2. List of required libraries
 - npm install @mui/material @emotion/react @emotion/styled
 - npm install react-redux
+- npm install react-router-dom
 
 
 
