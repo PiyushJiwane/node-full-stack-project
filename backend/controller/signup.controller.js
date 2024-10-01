@@ -8,12 +8,14 @@ const SALT_ROUND = Number(process.env.SALT_ROUND)
 
 const checkUser = async (req, res) => {
     const { email } = req.query
+    console.log(`checkUser : ${email}`);
     const user = await userModel.findOne({ email })
+    console.log(`checkUser : ${user}`);
     if (!user) {
         res.status(200).json({ "id": `email id : ${email} not present...!!!` })
         return
     }
-    res.status(400).json({ "id": user._id})
+    res.status(200).json({ "id": user._id})
     // throw new Error(`user with an email : ${email} already present in the db`)
 }
 
