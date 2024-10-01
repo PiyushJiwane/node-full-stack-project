@@ -2,34 +2,20 @@ import React, { useState } from 'react'
 import { useLoginMutation } from '../redux_store/loginSlice'
 import { setCredentials } from '../redux_store/authSlice'
 import { useDispatch } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
+import LoginPage from './LoginPage'
+import DashboardPage from './DashboardPage'
+import SignupPage from './SignupPage'
+import ForgetPasswordPage from './ForgetPasswordPage'
 
 function Main() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const [login] = useLoginMutation()
-    const dispatch=useDispatch()
-
-    const onSubmitHandler = async (e) => {
-        e.preventDefault()
-        const jwt_token = await login({ email, password })
-        console.log(`onSubmitHandler : ${JSON.stringify(jwt_token)}`);
-        dispatch(setCredentials({...jwt_token.data,email}))
-    }
-
     return (
-        <>
-            <form onSubmit={onSubmitHandler} method='POST'>
-                <label>Email : </label>
-                <input name='email' id='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-                <br /><br />
-                <label>Password : </label>
-                <input name='password' id='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <br /><br />
-                <button name='login' type='submit' disabled={!email || !password} >Login</button>
-            </form>
-        </>
+        <Routes>
+            <Route path='/' end element={<LoginPage />} />
+            <Route path='/dashobard' element={<DashboardPage/>}/>
+            <Route path='/signup' element={<SignupPage/>}/>
+            <Route path='/forget-password' element={<ForgetPasswordPage/>}/>
+        </Routes>
     )
 }
-
 export default Main
