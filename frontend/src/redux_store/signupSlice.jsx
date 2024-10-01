@@ -4,7 +4,7 @@ export const signupSlice = baseSlice.injectEndpoints({
     endpoints: builder => ({
         otpValidation: builder.query({
             query: (email) => {
-                console.log(`loginSlice : login ${JSON.stringify(email)}`);
+                console.log(`signupSlice : otpValidation ${JSON.stringify(email)}`);
                 return {
                     url: `/otpValidation?email=${email}`,
                     method: 'GET'
@@ -18,11 +18,24 @@ export const signupSlice = baseSlice.injectEndpoints({
                     method:'GET'
                 }
             }
+        }),
+        signup: builder.mutation({
+            query: (credentials) => {
+                console.log(`signupSlice : signup ${JSON.stringify(credentials)}`);
+                return {
+                    url: "/signup",
+                    method: 'POST',
+                    body:{...credentials}
+                }
+            }
         })
     })
 })
 
 export const {
     useOtpValidationQuery,
-    useCheckUserQuery
+    useLazyOtpValidationQuery,
+    useLazyCheckUserQuery,
+    useCheckUserQuery,
+    useSignupMutation
 }=signupSlice
