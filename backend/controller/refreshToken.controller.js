@@ -5,18 +5,18 @@ const jwt = require("jsonwebtoken")
 require('dotenv/config')
 
 const JWT_REFRESHTOKEN_SECRETE_KEY = process.env.JWT_REFRESHTOKEN_SECRETE_KEY
-console.log(`JWT_REFRESHTOKEN_SECRETE_KEY : ${JWT_REFRESHTOKEN_SECRETE_KEY}`);
 
 // Refresh token endpoint to generate a new Access Token
-const generateRefreshTokenByAccessToken=(req, res) => {
-    const { refreshToken } = req.body;
+const generateRefreshTokenByAccessToken = (req, res) => {
+    console.log(`req.cookies ----> ${JSON.stringify(req.cookies)}`);
+    const { refreshToken } = req.cookies.jwt_refresh_token;
 
-    console.log(`refreshToken ---> ${refreshToken}`);
+    console.log(`refreshToken ---> ${JSON.stringify(refreshToken)}`);
     
     if (!refreshToken) return res.sendStatus(401);
     
     jwt.verify(refreshToken, JWT_REFRESHTOKEN_SECRETE_KEY, async (err, decoded) => {
-        console.log(`decoded ---> ${JSON.stringify(decoded)}`);
+        console.log(`decoded ---> ${err}`);
         if (err) return res.sendStatus(403);
 
         const userId = decoded._id
