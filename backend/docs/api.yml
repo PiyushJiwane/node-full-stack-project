@@ -13,6 +13,8 @@ servers:
     description: This is the local server
 
 paths:
+  /todo/api/v1/refreshToken:
+    $ref: 'jwtToken.yml#/paths/~1todo~1api~1v1~1refreshToken'
   /todo/api/v1/login:
     $ref: './login.yml#/paths/~1todo~1api~1v1~1login'
   /todo/api/v1/forgetPassword:
@@ -31,8 +33,6 @@ paths:
     $ref: './todo.yml#/paths/~1todo~1api~1v1~1todo~1{userId}'
   /todo/api/v1/inActive/todo/{userId}:
     $ref: 'todo.yml#/paths/~1todo~1api~1v1~1inActive~1todo~1{userId}'
-  /todo/api/v1/refreshToken:
-    $ref: 'jwtToken.yml#/paths/~1todo~1api~1v1~1refreshToken'
 
 components:
   securitySchemes:
