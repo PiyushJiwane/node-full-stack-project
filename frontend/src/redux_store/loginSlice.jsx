@@ -11,10 +11,21 @@ export const loginSlice = baseSlice.injectEndpoints({
                     body:{...credentials}
                 }
             }
+        }),
+        forgetPassword: builder.mutation({
+            query: (body) => {
+                console.log(`loginSlice : login ${JSON.stringify(body)}`);
+                return {
+                    url: "/forgetPassword",
+                    method: 'POST',
+                    body:{...body}
+                }
+            }
         })
     })
 })
 
 export const {
-    useLoginMutation
+    useLoginMutation,
+    useForgetPasswordMutation
 }=loginSlice
