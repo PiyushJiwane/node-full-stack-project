@@ -24,8 +24,8 @@ const login = async (req, res) => {
                 const jwt_refresh_token = await generateJWTRefreshToken(result)
                 
                 const refreshTokenObject = new refreshTokenModel({
-                    _id:result._id,
-                    refreshToken:jwt_refresh_token
+                    _id: result._id,
+                    refreshToken: jwt_refresh_token
                 })
 
                 // const refreshTokenSave=await refreshTokenObject.save()
@@ -33,12 +33,13 @@ const login = async (req, res) => {
                     result._id,           // Query by _id
                     refreshTokenObject,    // Data to update
                     { upsert: true, new: true } // Options: upsert to create if not found, new to return the updated document
-                  );
+                );
 
-                res.cookie("jwt_refresh_token",refreshTokenSave,{httpOnly:true,maxAge:7*24*60*60*1000})
+                res.cookie("jwt_refresh_token", refreshTokenSave, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 })
                 return res.status(200).json({ jwt_token })
+            } else {
+                throw new Error(JSON.stringify({"data":`incorrect password`}))
             }
-            throw new Error(JSON.stringify({"data":`incorrect password`}))
         }
         console.log("error");
         throw new Error(JSON.stringify({"data":`email id :${email} does not exist in the db`}))
@@ -120,7 +121,7 @@ const forgetPassword = async (req, res) => {
         console.log(userDoc);
 
         if (userDoc.acknowledged) {
-            res.status(200).json({ "data": `id : ${email} got updated...!!!` })
+            res.status(200).json({ "password_updated": true })
         } else {
             res.status(400).json({ "data": `id : ${email} has same issue...!!!` })
             throw new Error(`id : ${email} has same issue...!!!`)
