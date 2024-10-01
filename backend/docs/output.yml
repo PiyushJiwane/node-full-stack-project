@@ -10,6 +10,19 @@ servers:
   - url: 'http://localhost:5000'
     description: This is the local server
 paths:
+  /todo/api/v1/refreshToken:
+    get:
+      description: Describe this route
+      summary: Describe this route
+      tags:
+        - JWT Token
+      responses:
+        '200':
+          description: Description
+          content:
+            application/json:
+              schema:
+                type: string
   /todo/api/v1/login:
     post:
       description: login api
@@ -214,6 +227,8 @@ paths:
     post:
       description: save the todo data
       summary: save the todo data
+      security:
+        - bearerAuth: []
       tags:
         - Todo Controller
       parameters:
@@ -247,6 +262,8 @@ paths:
     put:
       description: delete todo
       summary: delete todo
+      security:
+        - bearerAuth: []
       tags:
         - Todo Controller
       parameters:
@@ -256,29 +273,6 @@ paths:
           description: todo id which we want to delete
           schema:
             type: string
-      responses:
-        '200':
-          description: Description
-          content:
-            application/json:
-              schema:
-                type: string
-  /todo/api/v1/refreshToken:
-    post:
-      description: Describe this route
-      summary: Describe this route
-      tags:
-        - JWT Token
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                refreshToken:
-                  type: string
-                  example: weq441qw51eqwe12qw1e.....
       responses:
         '200':
           description: Description
