@@ -18,7 +18,8 @@ const crosOptions = {
     },
     methods: ['GET', 'POST','PUT','DELETE'], // Define allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
-  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+    optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }
 
 module.exports= crosOptions
