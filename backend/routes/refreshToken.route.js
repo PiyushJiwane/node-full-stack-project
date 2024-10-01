@@ -4,6 +4,6 @@ const generateRefreshTokenByAccessToken = require("../controller/refreshToken.co
 const refreshToken_route = express.Router()
 const initPath="/todo/api/v1"
 
-refreshToken_route.post(`${initPath}/refreshToken`, generateRefreshTokenByAccessToken)
+refreshToken_route.get(`${initPath}/refreshToken`, generateRefreshTokenByAccessToken)
 
 module.exports = refreshToken_route
