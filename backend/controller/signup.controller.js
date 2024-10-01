@@ -19,6 +19,7 @@ const checkUser = async (req, res) => {
 
 const sendOtp = async (req, res) => {
     const { email } = req.query
+    console.log(`otp validation : ${email}`);
 
     try {
         // First delete the existing OTP
@@ -37,7 +38,7 @@ const sendOtp = async (req, res) => {
 
         if (otpAfterSave._id) {
             res.status(201).json({
-                "data": `your otp is: ${otp}`
+                "otp": otp
             })
             return
         }
