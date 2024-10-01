@@ -1,20 +1,10 @@
 paths:
   /todo/api/v1/refreshToken:
-    post:
+    get:
       description: Describe this route
       summary: Describe this route
       tags:
         - JWT Token
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                refreshToken:
-                  type: string
-                  example: weq441qw51eqwe12qw1e.....
       responses:
         200:
           description: Description
