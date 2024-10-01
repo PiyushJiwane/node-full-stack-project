@@ -12,10 +12,10 @@ const checkUser = async (req, res) => {
     const user = await userModel.findOne({ email })
     console.log(`checkUser : ${user}`);
     if (!user) {
-        res.status(200).json({ "id": `email id : ${email} not present...!!!` })
+        res.status(200).json({ "exists": false })
         return
     }
-    res.status(200).json({ "id": user._id})
+    return res.status(200).json({ "exists": true})
     // throw new Error(`user with an email : ${email} already present in the db`)
 }
 
@@ -70,7 +70,8 @@ const signup = async (req, res) => {
 
         if (userAfterSave._id) {
             res.status(201).json({
-                "data": `data got saved successfully with an id : ${userAfterSave._id}`
+                "data": `data got saved successfully with an id : ${userAfterSave._id}`,
+                "signed":true
             })
         } else {
             res.status(400).json({ "data": `facing issue while saving the data with email :${email}` })
