@@ -19,7 +19,6 @@ const verifyJWT = (req, res, next) => {
         req.id = decoded._id
         next()
     });
-    next()
 }
 
 module.exports=verifyJWT
