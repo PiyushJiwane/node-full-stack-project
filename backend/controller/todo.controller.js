@@ -5,6 +5,9 @@ const todoModel = require("../models/todo_model");
 const saveTodo = async (req, res) => {
   const { userId } = req.params
   const { title, desc } = req.body
+  console.log(userId);
+  console.log(title);
+  console.log(desc);
   try {
     const todoObj = new todoModel({
       userId,
@@ -15,12 +18,14 @@ const saveTodo = async (req, res) => {
     })
     const todoSave = await todoObj.save()
     if (todoSave) {
+      console.log(todoSave);
       return res.status(201).json({
-        "data": `success`
+        "todoSave": true
       })
-    }
-    res.status(400).json({ "data": `facing issue while saving the todo data data with id :${userId}` })
+    } else {
+      res.status(400).json({ "data": `facing issue while saving the todo data data with id :${userId}` })
     throw new Error(`facing issue while saving the todo data with email :${userId}`)
+    }
 
 
     // const todoList = await todoModel.find({ userId: "66dc13eeda580cc8e8ea1bfc" }).populate('todo')
