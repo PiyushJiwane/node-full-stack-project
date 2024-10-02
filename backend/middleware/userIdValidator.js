@@ -1,6 +1,6 @@
-const { check, body, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 const logger = require('../logging/logger');
-const { email_validBody, password_validBody, objectId_validParam } = require('./commonValidator');
+const { objectId_validParam } = require('./commonValidator');
 
 const userIdValidator = [
     objectId_validParam,
