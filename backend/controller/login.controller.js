@@ -35,8 +35,8 @@ const login = async (req, res) => {
                     { upsert: true, new: true } // Options: upsert to create if not found, new to return the updated document
                 );
 
-                res.cookie("jwt_refresh_token", refreshTokenSave, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 })
-                return res.status(200).json({ jwt_token })
+                res.cookie("jwt_refresh_token", refreshTokenSave, { httpOnly: true, sameSite:'None', secure:true, maxAge: 7 * 24 * 60 * 60 * 1000 })
+                return res.status(200).json({ jwt_token,_id:result._id })
             } else {
                 throw new Error(JSON.stringify({"data":`incorrect password`}))
             }
