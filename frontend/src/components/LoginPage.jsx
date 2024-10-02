@@ -16,7 +16,7 @@ function LoginPage() {
         e.preventDefault()
         const jwt_token = await login({ email, password })
         console.log(`onSubmitHandler : ${JSON.stringify(jwt_token)}`);
-        dispatch(setCredentials({ ...jwt_token.data, email }))
+        dispatch(setCredentials({ ...jwt_token.data, email,...jwt_token._id }))
         navigate("/dashobard")
     }
 
