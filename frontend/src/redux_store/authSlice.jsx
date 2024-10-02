@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     email:null,
-    token: null
+    token: null,
+    _id:null
 }
 
 const authSlice = createSlice({
@@ -11,9 +12,10 @@ const authSlice = createSlice({
     reducers: {
         setCredentials: (state, action) => {
             console.log(`authSlice : setCredentials : ${JSON.stringify(action.payload)}`);
-            const { jwt_token,email } = action.payload
+            const { jwt_token,email,_id } = action.payload
             state.token = jwt_token
-            state.email=email
+            state.email = email
+            state._id=_id
         },
         logout: (state, action) => {
             state.email = null
@@ -22,6 +24,6 @@ const authSlice = createSlice({
     }
 });
 
-export const {setCredentials,logout } = authSlice.actions
+export const {setCredentials,logout,setId } = authSlice.actions
 
 export default authSlice.reducer
