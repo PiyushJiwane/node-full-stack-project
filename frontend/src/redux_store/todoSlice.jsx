@@ -11,10 +11,24 @@ export const todoSlice = baseSlice.injectEndpoints({
                     body:{...data}
                 }
             }
+        }),
+        retriveTodo: builder.query({
+            query: (data) => {
+                console.log(`todoSlice : retriveTodo ${JSON.stringify(data)}`);
+                return {
+                    url: `/todo/${data}`,
+                    method: 'GET'
+                }
+            }
+            // query: (data) => ({
+            //     url:`/todo/${data.id}`,
+            //     method: 'GET'
+            // })
         })
     })
 })
 
 export const {
-useSaveTodoMutation
+    useSaveTodoMutation,
+    useRetriveTodoQuery
 }=todoSlice
