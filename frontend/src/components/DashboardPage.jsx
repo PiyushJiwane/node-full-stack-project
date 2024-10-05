@@ -13,9 +13,9 @@ function DashboardPage() {
   const [saveTodo, { isSuccess, data }] = useSaveTodoMutation()
   const { data:retriveTodo,isSuccess:isSuccessTodo } = useRetriveTodoQuery(id)  
   
-  const onSubmitHandler = async (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault()
-    await saveTodo({
+     saveTodo({
       userId:id,
       title,
       desc
