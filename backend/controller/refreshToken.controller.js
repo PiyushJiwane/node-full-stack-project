@@ -23,10 +23,10 @@ const generateRefreshTokenByAccessToken = (req, res) => {
         const user = refreshTokenModel.findOne({ userId }) // Invalid token
         
         if (!user) return res.sendStatus(403);
-
+ 
         const jwt_token = await generateJWTToken(decoded)
         console.log(`jwt_token ---> ${jwt_token}`);
-        res.status(200).json({ jwt_token })
+        res.status(200).json({ jwt_token,_id:userId })
     });
 }
 
