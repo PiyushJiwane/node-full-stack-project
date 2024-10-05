@@ -15,16 +15,12 @@ const baseQuery = fetchBaseQuery({
 })
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
-    // console.log(`args : ${JSON.stringify(args)}`);
-    // console.log(`api : ${JSON.stringify(api)}`);
-    // console.log(`extraOptions : ${extraOptions}`);
     let result = await baseQuery(args, api, extraOptions)
-    console.log(`baseQueryWithReauth : 1st result : ${JSON.stringify(result)}`);
-    console.log(`error : ${JSON.stringify(result?.error)}`);
-    if (result?.error?.originalStatus === 403) {
-        console.log("refresh token");
+    console.log(`baseQueryWithReauth : result : ${JSON.stringify(result)}`);
+    console.log(`baseQueryWithReauth : error : ${JSON.stringify(result?.error)}`);
+    if (result?.error?.originalStatus === 403 || result?.error?.status === 400) {
         const refreshResult = await baseQuery("/refreshToken", api, extraOptions)
-        console.log(`refreshResult : ${JSON.stringify(refreshResult)}`);
+        console.log(`baseQueryWithReauth : refreshResult : ${JSON.stringify(refreshResult)}`);
         if (refreshResult?.data) {
             const email = api.getState().auth.email
             api.dispatch(setCredentials({ ...refreshResult.data, email,...refreshResult._id }))
