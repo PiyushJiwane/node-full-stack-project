@@ -68,11 +68,21 @@ export const todoSlice = baseSlice.injectEndpoints({
             //     url:`/todo/${data.id}`,
             //     method: 'GET'
             // })
+        }),
+        updateTodo: builder.mutation({
+            query: (newTodo) => {
+                return{
+                    url: `/update/todo/${newTodo.userId}`,
+                    method: "PUT",
+                    body:{...newTodo}
+                }
+            },
         })
     })
 })
 
 export const {
     useSaveTodoMutation,
-    useRetriveTodoQuery
+    useRetriveTodoQuery,
+    useUpdateTodoMutation
 } = todoSlice
