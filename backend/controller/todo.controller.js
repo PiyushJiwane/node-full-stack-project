@@ -24,7 +24,7 @@ const saveTodo = async (req, res) => {
       })
     } else {
       res.status(400).json({ "data": `facing issue while saving the todo data data with id :${userId}` })
-    throw new Error(`facing issue while saving the todo data with email :${userId}`)
+      throw new Error(`facing issue while saving the todo data with email :${userId}`)
     }
 
 
@@ -79,9 +79,10 @@ const retriveTodo = async (req, res) => {
 
 // const todoId="66dff195d07777676f0859fe"
 const inActiveTodo = async (req, res) => {
-  const todoId  = req.params.userId
+  // NOTE : here todoId is referering as userId for the convinience
+  const todoId = req.params.userId
   try {
-    const todo = await todoModel.findOne({ 'todo._id':todoId}) 
+    const todo = await todoModel.findOne({ 'todo._id': todoId })
 
     if (!todo) {
       return res.status(200).json({ "data": `id : ${todoId} is not present...!!!` })
@@ -89,15 +90,42 @@ const inActiveTodo = async (req, res) => {
     // todo.todo.isCompleted=true
     // const todoUpdate=await todo.save()
     const updateTodo = await todoModel.updateOne(
-      { 'todo._id':todoId}, 
+      { 'todo._id': todoId },
       { 'todo.isCompleted': true }, // Update 'isCompleted' field to false
       { new: true } // Return the updated document
     );
-    
+
     if (!updateTodo) {
       return res.status(404).json({ "data": `error while saving data in db` })
     }
-    res.status(200).json({"data":"save"})
+    res.status(200).json({ "data": "save" })
+  } catch (error) {
+    logger.error(error.message);
+  }
+}
+
+const updateTodo = async (req, res) => {
+  // NOTE : here todoId is referering as userId for the convinience
+  const todoId = req.params.userId
+  try {
+    const todo = await todoModel.findOne({ 'todo._id': todoId })
+    console.log(`updateTodo : _id : ${todo}`);
+
+    if (!todo) {
+      return res.status(200).json({ "data": `id : ${todoId} is not present...!!!` })
+    }
+
+    const updateTodo = await todoModel.updateOne(
+      { 'todo._id': todoId },
+      { 'todo.title': req.body.title, 'todo.desc': req.body.desc }, // Update 'isCompleted' field to false
+      { new: true } // Return the updated document
+    );
+
+    if (!updateTodo) {
+      return res.status(404).json({ "data": `error while saving data in db` })
+    }
+    res.status(200).json({ "data": "save" })
+
   } catch (error) {
     logger.error(error.message);
   }
@@ -106,5 +134,6 @@ const inActiveTodo = async (req, res) => {
 module.exports = {
   saveTodo,
   retriveTodo,
-  inActiveTodo
+  inActiveTodo,
+  updateTodo
 }
