@@ -5,11 +5,13 @@ import { useRetriveTodoQuery, useSaveTodoMutation, useUpdateTodoMutation } from 
 
 function UpdateTodo() {
   const location = useLocation();
+  const navigate = useNavigate()
 
   console.log(location.state?.item.todo._id);
 
   // Access the passed state
-  const id = location.state?.item.todo._id;
+  const userId = location.state?.item.userId;
+  const todoId = location.state?.item.todo._id;
 
   const [title, setTitle] = useState(location.state?.item?.todo?.title)
   const [desc, setDesc] = useState(location.state?.item?.todo?.desc)
@@ -19,12 +21,14 @@ function UpdateTodo() {
   const onSubmitUpdateTodoHandler = (e) => {
     e.preventDefault()
     updateTodo({
-      userId: id,
+      todoId,
+      userId,
       title,
       desc
     }).unwrap()
     setTitle('')
     setDesc('')
+    navigate('/dashobard')
   }
   return (
     <>
