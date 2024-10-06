@@ -280,6 +280,41 @@ paths:
             application/json:
               schema:
                 type: string
+  '/todo/api/v1/update/todo/{userId}':
+    put:
+      description: update todo
+      summary: update todo
+      security:
+        - bearerAuth: []
+      tags:
+        - Todo Controller
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          description: todo id which we want to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Title
+                desc:
+                  type: string
+                  example: Desc for the Title
+      responses:
+        '200':
+          description: Description
+          content:
+            application/json:
+              schema:
+                type: string
 components:
   securitySchemes:
     bearerAuth:
