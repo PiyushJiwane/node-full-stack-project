@@ -7,6 +7,7 @@ import LoginPage from './LoginPage'
 import DashboardPage from './DashboardPage'
 import SignupPage from './SignupPage'
 import ForgetPasswordPage from './ForgetPasswordPage'
+import UpdateTodo from './UpdateTodo'
 
 function Main() {
     return (
@@ -15,6 +16,7 @@ function Main() {
             <Route path='/dashobard' element={<DashboardPage/>}/>
             <Route path='/signup' element={<SignupPage/>}/>
             <Route path='/forget-password' element={<ForgetPasswordPage/>}/>
+            <Route path='/update-todo' element={<UpdateTodo/>}/>
         </Routes>
     )
 }
