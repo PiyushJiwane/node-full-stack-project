@@ -71,10 +71,50 @@ export const todoSlice = baseSlice.injectEndpoints({
         }),
         updateTodo: builder.mutation({
             query: (newTodo) => {
+                console.log(`updateTodo : newTodo : ${JSON.stringify(newTodo)}`);
                 return{
-                    url: `/update/todo/${newTodo.userId}`,
+                    url: `/update/todo/${newTodo.todoId}`,
                     method: "PUT",
-                    body:{...newTodo}
+                    body:{title:newTodo.title,desc:newTodo.desc}
+                }
+            },
+            async onQueryStarted(newTodo, { dispatch, queryFulfilled }) {
+                console.log(`onQueryStarted : ${typeof newTodo}`);
+                console.log(`onQueryStarted : ${JSON.stringify(newTodo)}`);
+                console.log(`onQueryStarted : ${JSON.stringify({...newTodo})}`);
+                let customeNewTodo = { ...newTodo }
+                let patchResult;
+                try {
+                    patchResult = dispatch(
+                        todoSlice.util.updateQueryData('retriveTodo', customeNewTodo.userId, (draft) => {
+                            console.log(`draft : ${JSON.stringify(draft)}`)
+                            // Check if draft is an array before modifying it
+                            if (Array.isArray(draft)) {
+
+                                const customDraft = draft.map(item => 
+                                    item.todo._id===customeNewTodo.todoId?{...item,todo:{...item.todo,title:customeNewTodo.title,desc:customeNewTodo.desc}}:item
+                                )
+                                
+                                draft.splice(0, draft.length, ...customDraft);
+
+                                console.log(`if : arrar : draft : ${JSON.stringify(draft)}`);
+                                 // Sort the array in descending order based on `_id`
+                                 draft.sort((a, b) => new Date(b.todo.createdAt) - new Date(a.todo.createdAt));
+
+                            } else {
+                                Object.assign(draft, customeNewTodo);  // Handle object case if needed
+                                console.log(`else : object : draft : ${JSON.stringify(draft)}`);
+                            }
+                        })
+                    );
+                    console.log(`patchResult : ${JSON.stringify(patchResult)}`);
+                    await queryFulfilled;
+                } catch (error) {
+                    // Revert the optimistic update in case of failure
+                    if (patchResult) {
+                        patchResult.undo();
+                    }
+                    console.error("Error during optimistic update: ", error);
                 }
             },
         })
